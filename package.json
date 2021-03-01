@@ -25,7 +25,6 @@
     "dist": "webpack -p"
   },
   "dependencies": {
-    "font-awesome": "^4.7.0",
     "react": "16.2.0",
     "react-dom": "16.2.0",
     "react-router-dom": "^5.2.0"

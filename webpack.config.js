@@ -10,10 +10,17 @@ module.exports = {
     filename: 'js/app.js',
     publicPath: "/dist"
   },
+  resolve: {
+    alias: {
+      page: path.resolve(__dirname, 'src/page'),
+      component: path.resolve(__dirname, 'src/component'),
+    }
+  },
   devServer: {
-    contentBase: path.join(__dirname, 'dist'),
-    compress: true,
     port: 9000,
+    historyApiFallback: {
+      index: '/dist/index.html'
+    }
   },
   module: {
     rules: [
@@ -28,15 +35,8 @@ module.exports = {
           }
         }
       },
-      // css deal
-      {
-        test: /\.css$/i,
-        use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use: "css-loader"
-        })
-      },
-      // css deal
+      // css deal【注意：该配置不要重复了，今天遇见一个
+      // css 的样式文件编译不到最终的main.css，最终发现是在这个配置了两份】
       {
         test: /\.css$/i,
         use: ExtractTextPlugin.extract({
