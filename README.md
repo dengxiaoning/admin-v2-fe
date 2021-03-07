@@ -11,13 +11,13 @@ This is a management system developed using the react framework.
 # test
 
 ```
- npm run dev
+ yarn run dev
 ```
 
 # build
 
 ```
 
-npm run dist
+yarn run dist
 
 ```
