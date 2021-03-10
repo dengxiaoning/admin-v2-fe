@@ -25,6 +25,7 @@
     "dist": "webpack -p"
   },
   "dependencies": {
+    "rc-pagination": "1.15.1",
     "react": "16.2.0",
     "react-dom": "16.2.0",
     "react-router-dom": "^5.2.0"

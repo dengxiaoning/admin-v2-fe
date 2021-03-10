@@ -14,8 +14,8 @@ import UserList from 'page/user/index.jsx'
 import ErrorPage from 'page/error/index.jsx'
 
 class App extends React.Component {
-  layoutRouter() {
-    return (
+  render() {
+    let layout = (
       <Layout>
         <Switch>
           <Route exact path="/" component={Home}></Route>
@@ -27,13 +27,11 @@ class App extends React.Component {
         </Switch>
       </Layout>
     )
-  }
-  render() {
     return (
       <Router>
         <Switch>
           <Route path="/login" component={Login}></Route>
-          <Route path="/" render={(props) => this.layoutRouter()}></Route>
+          <Route path="/" render={(props) => layout}></Route>
         </Switch>
       </Router>
     )

@@ -1,5 +1,6 @@
 class MUtil {
   request(param) {
+    var _self = this
     return new Promise((resolve, reject) => {
       $.ajax({
         type: param.type || 'get',
@@ -11,7 +12,7 @@ class MUtil {
             typeof resolve === 'function' && resolve(res.data, res.msg)
           } else if (10 === res.status) {
             // 没有登录，强制登录
-            this.doLogin()
+            _self.doLogin()
           } else {
             typeof reject === 'function' && reject(res.msg || res.data)
           }
