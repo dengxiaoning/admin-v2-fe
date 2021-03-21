@@ -46,7 +46,6 @@ class PeoductList extends React.Component {
     )
   }
   onSearch(searchType, searchKeyword) {
-    console.log(searchType, searchKeyword)
     let listType = searchKeyword === '' ? 'list' : 'search'
     this.setState(
       {

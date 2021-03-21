@@ -19,6 +19,16 @@ class Product {
       data: data,
     })
   }
+  // 根据id 获取详情数据
+  getProduct(procuctId) {
+    return _mm.request({
+      type: 'post',
+      url: '/manage/product/detail.do',
+      data: {
+        productId: procuctId || 0,
+      },
+    })
+  }
   setProductStatus(productInfo) {
     return _mm.request({
       type: 'post',

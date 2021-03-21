@@ -14,9 +14,9 @@ class ProductSave extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      id: this.props.match.params.pid,
       name: '',
       subtitle: '',
-
       categoryId: 0,
       parentCategoryId: 0,
       subImages: [],
@@ -24,6 +24,31 @@ class ProductSave extends React.Component {
       stock: '',
       detail: '',
       status: 1, // 这是商品状态（在售）
+    }
+  }
+  componentDidMount() {
+    this.loadProduct()
+  }
+  // 加载商品详情数据
+  loadProduct() {
+    // 在有id时表示是编辑，需要数据回填
+    if (this.state.id) {
+      _product.getProduct(this.state.id).then(
+        (res) => {
+          let images = res.subImages.split(',')
+          res.subImages = images.map((imgUri) => {
+            return {
+              uri: imgUri,
+              url: res.imageHost + imgUri,
+            }
+          })
+          res.defaultDetail = res.detail
+          this.setState(res)
+        },
+        (errMsg) => {
+          _mm.errorTips(errMsg)
+        },
+      )
     }
   }
   // 简单的字段改变，比如商品名称，描述，价格，库存
@@ -85,6 +110,9 @@ class ProductSave extends React.Component {
         status: this.state.status,
       },
       productCheckResult = _product.checkProduct(product)
+    if (this.state.id) {
+      product.id = this.state.id
+    }
     // 表单验证成功
     if (productCheckResult.status) {
       _product.saveProduct(product).then(
@@ -111,6 +139,7 @@ class ProductSave extends React.Component {
               <input
                 type="text"
                 name="name"
+                value={this.state.name}
                 className="form-control"
                 placeholder="请输入商品名称"
                 onChange={(e) => this.onValueChange(e)}
@@ -123,6 +152,7 @@ class ProductSave extends React.Component {
               <input
                 type="text"
                 name="subtitle"
+                value={this.state.subtitle}
                 className="form-control"
                 placeholder="请输入商品描述"
                 onChange={(e) => this.onValueChange(e)}
@@ -132,6 +162,8 @@ class ProductSave extends React.Component {
           <div className="form-group">
             <label className="col-md-2 control-label">所属分类</label>
             <CategorySelector
+              categoryId={this.state.categoryId}
+              parentCategoryId={this.state.parentCategoryId}
               onCategoryChange={(categoryId, parentCategoryId) =>
                 this.onCategoryChange(categoryId, parentCategoryId)
               }
@@ -145,6 +177,7 @@ class ProductSave extends React.Component {
                   type="number"
                   name="price"
                   className="form-control"
+                  value={this.state.price}
                   placeholder="请输入商品价格"
                   onChange={(e) => this.onValueChange(e)}
                 />
@@ -159,6 +192,7 @@ class ProductSave extends React.Component {
                 <input
                   type="number"
                   name="stock"
+                  value={this.state.stock}
                   className="form-control"
                   placeholder="请输入商品库存"
                   onChange={(e) => this.onValueChange(e)}
@@ -196,6 +230,8 @@ class ProductSave extends React.Component {
             <label className="col-md-2 control-label">商品详情</label>
             <div className="col-md-10">
               <RichEditor
+                detail={this.state.detail}
+                defaultDetail={this.state.defaultDetail}
                 onValueChange={(value) => this.onDetailValueChange(value)}
               ></RichEditor>
             </div>
