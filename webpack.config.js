@@ -7,9 +7,9 @@ console.log(WEBPACK_ENV)
 module.exports = {
   entry: './src/app.jsx',
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'learn-admin-react'),
     filename: 'js/app.js',
-    publicPath: WEBPACK_ENV === 'dev' ? "/dist" : '//s.benpaodehenji.com/learn-amin-react/admin-v2-fe/dist/'
+    publicPath: WEBPACK_ENV === 'dev' ? "/learn-admin-react" : '//s.benpaodehenji.com/admin-v2-fe/learn-admin-react'
   },
   resolve: {
     alias: {
@@ -22,7 +22,7 @@ module.exports = {
   devServer: {
     port: 8086,
     historyApiFallback: {
-      index: '/dist/index.html'
+      index: '/learn-admin-react/index.html'
     },
     proxy: {
       '/manage': {

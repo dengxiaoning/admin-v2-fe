@@ -20,7 +20,7 @@ fi
 
 # clean dist 
 echo -e "----------------Clean Dist---------------"
-rm -rf ./dist
+rm -rf ./learn-admin-react
 
 echo -e "----------------Git  Pull---------------"
 git pull
@@ -35,13 +35,13 @@ echo -e "----------------Npm run Dist---------------"
 npm run dist
 
 
-if [ -d "./dist" ];
+if [ -d "./learn-admin-react" ];
 then
-    echo -e "----------------Clean Dist---------------"
-    rm -rf $DEST_PATH/dist
+    echo -e "----------------Clean Dist ---------------"
+    rm -rf $DEST_PATH/learn-admin-react
 
     echo -e "----------------Copy Dist---------------"
-    cp -R ./dist $DEST_PATH/$1/
+    cp -R ./learn-admin-react $DEST_PATH/$1/
 
 
     echo -e "----------------Deploy Success---------------"
