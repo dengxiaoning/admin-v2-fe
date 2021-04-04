@@ -21,3 +21,10 @@ This is a management system developed using the react framework.
 yarn run dist
 
 ```
+
+# Preview Address
+
+```
+http://adminv2.benpaodehenji.com
+
+```
