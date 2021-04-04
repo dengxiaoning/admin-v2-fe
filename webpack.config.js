@@ -9,7 +9,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'js/app.js',
-    publicPath: WEBPACK_ENV === 'dev' ? "/dist" : '//s.benpaodehenji.com/admin-v2-fe/dist/'
+    publicPath: WEBPACK_ENV === 'dev' ? "/dist" : '//s.benpaodehenji.com/learn-amin-react/admin-v2-fe/dist/'
   },
   resolve: {
     alias: {
